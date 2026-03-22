@@ -10,8 +10,10 @@
   --accent-purple: #8b5cf6;
   --accent-violet: #a78bfa;
   --text-primary: #f8fafc;
+  --text-h: #ffffff;
   --text-muted: #94a3b8;
   --text-dim: #64748b;
+  --code-bg: #1a1b26;
 
   --sans: 'Inter', system-ui, sans-serif;
   --heading: 'Inter', system-ui, sans-serif;

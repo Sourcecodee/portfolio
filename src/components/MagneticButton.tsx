@@ -40,7 +40,7 @@ export function MagneticButton({ children, className = '', onClick, href }: Magn
   );
 
   const baseClass =
-    'inline-flex items-center justify-center px-8 py-4 rounded-full font-medium transition-all duration-300 cursor-pointer bg-gradient-to-r from-indigo-500 to-purple-500 text-white hover:shadow-lg hover:shadow-indigo-500/30 ' +
+    'inline-flex items-center justify-center px-8 py-4 rounded-full font-medium transition-all duration-300 cursor-pointer bg-indigo-500/10 border border-indigo-500/30 text-white hover:bg-indigo-500/20 hover:shadow-lg hover:shadow-indigo-500/20 ' +
     className;
 
   if (href) {

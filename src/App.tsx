@@ -7,37 +7,39 @@ import { TiltCard } from './components/TiltCard';
 import { OrbitalSkills } from './components/OrbitalSkills';
 import './App.css';
 
+import { Code, Zap, Sparkles, Rocket, ExternalLink, Github, ChevronDown } from 'lucide-react';
+
 const FEATURES = [
-  { icon: '</>', title: 'Clean Code', desc: 'Writing maintainable and scalable solutions' },
-  { icon: '⚡', title: 'Performance', desc: 'Optimized for speed and efficiency' },
-  { icon: '🚀', title: 'Modern Stack', desc: 'Latest technologies and best practices' },
-  { icon: '✨', title: 'Fast Delivery', desc: 'Quick iterations and rapid development' },
+  { icon: Code, title: 'Clean Code', desc: 'Writing maintainable and scalable solutions', color: 'bg-blue-500/20 text-blue-400' },
+  { icon: Rocket, title: 'Performance', desc: 'Optimized for speed and efficiency', color: 'bg-purple-500/20 text-purple-400' },
+  { icon: Sparkles, title: 'Modern Stack', desc: 'Latest technologies and best practices', color: 'bg-indigo-500/20 text-indigo-400' },
+  { icon: Zap, title: 'Fast Delivery', desc: 'Quick iterations and rapid development', color: 'bg-amber-500/20 text-amber-400' },
 ];
 
 const PROJECTS = [
   {
     title: 'E-Commerce Platform',
-    desc: 'Full-featured solution with inventory, payment, and admin dashboard.',
+    desc: 'A full-featured e-commerce solution with real-time inventory, payment integration, and admin dashboard.',
     tags: ['React', 'TypeScript', 'Stripe', 'Redux'],
     demo: '#',
     code: '#',
-    image: 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=400&h=240&fit=crop',
+    image: 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=600&h=400&fit=crop',
   },
   {
     title: 'Design System',
-    desc: 'Comprehensive component library with an accessibility-first approach.',
-    tags: ['Storybook', 'Tailwind', 'a11y'],
+    desc: 'A comprehensive component library with an accessibility-first approach and extensive documentation.',
+    tags: ['React', 'Storybook', 'Tailwind', 'a11y'],
     demo: '#',
     code: '#',
-    image: 'https://images.unsplash.com/photo-1586717799252-22cf4f8e74a6?w=400&h=240&fit=crop',
+    image: 'https://images.unsplash.com/photo-1586717799252-22cf4f8e74a6?w=600&h=400&fit=crop',
   },
   {
     title: 'AI Dashboard',
-    desc: 'Interactive data visualization dashboard with real-time analytics.',
+    desc: 'Interactive data visualization dashboard with real-time analytics and AI-powered insights.',
     tags: ['Next.js', 'D3.js', 'WebSocket', 'OpenAI'],
     demo: '#',
     code: '#',
-    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=240&fit=crop',
+    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop',
   },
 ];
 
@@ -51,7 +53,7 @@ const SOCIAL = [
 const fadeUp = {
   initial: { opacity: 0, y: 24 },
   whileInView: { opacity: 1, y: 0 },
-  viewport: { once: true, margin: '-40px' },
+  viewport: { once: true },
   transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] },
 };
 
@@ -65,65 +67,67 @@ const containerVariants = {
 
 function App() {
   return (
-    <div className="min-h-screen bg-[#0a0a0f] text-slate-100">
+    <div className="min-h-screen text-slate-100 relative overflow-hidden">
+      {/* Background Glows */}
+      <div className="fixed top-0 left-0 w-full h-full pointer-events-none -z-5 overflow-hidden">
+        <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-indigo-500/10 blur-[120px] rounded-full" />
+        <div className="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] bg-purple-500/10 blur-[150px] rounded-full" />
+        <div className="absolute top-[30%] right-[10%] w-[30%] h-[30%] bg-blue-500/5 blur-[100px] rounded-full" />
+      </div>
+
       <ParticleBackground />
       <FloatingCodeSnippets />
       <MorphingNav />
 
       <section
         id="hero"
-        className="min-h-screen flex flex-col items-center justify-center px-6 relative group"
+        className="min-h-screen flex flex-col items-center justify-center px-6 relative z-10"
       >
         <motion.div
-          className="text-center"
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+           className="text-center"
+           initial={{ opacity: 0, y: 40 }}
+           animate={{ opacity: 1, y: 0 }}
+           transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
         >
           <motion.p
-            className="text-indigo-400 text-sm md:text-base mb-2"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.2 }}
+            className="text-indigo-400 text-sm md:text-base mb-4 font-medium tracking-widest uppercase"
           >
             Hi, I'm
           </motion.p>
-          <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold bg-gradient-to-r from-indigo-300 via-violet-400 to-purple-500 bg-clip-text text-transparent mb-2">
-            Yusuf Mshelia
+          <h1 className="text-6xl md:text-8xl lg:text-9xl font-bold mb-6 tracking-tighter">
+            <span className="text-white">Yusuf </span>
+            <span className="text-purple-500">Mshelia</span>
           </h1>
-          <p className="text-slate-100 text-xl md:text-2xl mb-2 font-medium">React Developer</p>
-          <p className="text-slate-400 text-sm md:text-base max-w-md mx-auto">
+          <p className="text-slate-100 text-xl md:text-3xl font-medium opacity-90">React Developer</p>
+          <p className="text-slate-400 text-sm md:text-base max-w-md mx-auto mt-6 opacity-60">
             Building the future, one component at a time
           </p>
         </motion.div>
+
         <motion.div
-          className="absolute bottom-12"
+          className="absolute bottom-12 text-indigo-500/40"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1.2 }}
         >
-          <motion.span
-            className="text-indigo-500/60 text-2xl block"
+          <motion.div
             animate={{ y: [0, 8, 0] }}
             transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
           >
-            ↓
-          </motion.span>
+            <ChevronDown size={32} />
+          </motion.div>
         </motion.div>
       </section>
 
-      <section id="about" className="min-h-screen flex flex-col items-center justify-center px-6 py-24">
+      <section id="about" className="min-h-screen flex flex-col items-center justify-center px-6 py-24 relative z-10">
         <motion.h2
-          className="text-3xl md:text-5xl font-bold mb-6 text-center"
+          className="text-4xl md:text-6xl font-bold mb-16 text-center"
           {...fadeUp}
         >
-          <span className="text-slate-100">About </span>
-          <span className="bg-gradient-to-r from-indigo-400 to-purple-500 bg-clip-text text-transparent">
-            Me
-          </span>
+          <span>About Me</span>
         </motion.h2>
         <motion.p
-          className="text-slate-400 text-center max-w-2xl mb-16"
+          className="text-slate-400 text-center text-lg md:text-xl max-w-2xl mb-48 leading-relaxed"
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -133,27 +137,26 @@ function App() {
           user-friendly solutions. With a keen eye for detail and a commitment to excellence, I
           create digital experiences that not only look great but perform exceptionally.
         </motion.p>
-        <motion.div
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 w-full max-w-5xl"
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: '-50px' }}
-          variants={containerVariants}
+        <div
+          className="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 w-full max-w-6xl items-stretch"
         >
           {FEATURES.map((f, i) => (
-            <TiltCard key={i}>
+            <div key={i} className="flex">
               <motion.div
-                className="p-6 rounded-2xl glass h-full text-left transition-all duration-300 hover:border-indigo-500/30 hover:shadow-lg hover:shadow-indigo-500/10"
-                variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
-                transition={{ duration: 0.5 }}
+                className="p-8 rounded-2xl glass w-full text-left border border-white/10 flex flex-col group/feature shadow-xl shadow-black/40"
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.5, delay: i * 0.15 }}
               >
-                <span className="text-2xl text-indigo-400 mb-3 block">{f.icon}</span>
-                <h3 className="font-semibold text-slate-100 mb-2">{f.title}</h3>
-                <p className="text-slate-400 text-sm">{f.desc}</p>
+                <div className={`mb-6 p-3 rounded-lg w-fit ${f.color}`}>
+                  <f.icon size={28} />
+                </div>
+                <h3 className="font-bold text-slate-100 text-lg mb-3 tracking-wide">{f.title}</h3>
+                <p className="text-slate-400 text-sm leading-relaxed flex-1">{f.desc}</p>
               </motion.div>
-            </TiltCard>
+            </div>
           ))}
-        </motion.div>
+        </div>
       </section>
 
       <section id="projects" className="min-h-screen flex flex-col items-center px-6 py-24">
@@ -161,13 +164,10 @@ function App() {
           className="text-3xl md:text-5xl font-bold mb-2 text-center"
           {...fadeUp}
         >
-          <span className="text-slate-100">Featured </span>
-          <span className="bg-gradient-to-r from-indigo-400 to-purple-500 bg-clip-text text-transparent">
-            Projects
-          </span>
+          <span>Featured Projects</span>
         </motion.h2>
         <motion.p
-          className="text-slate-400 text-center mb-16"
+          className="text-slate-400 text-center mb-12"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
@@ -175,7 +175,7 @@ function App() {
           A selection of my recent work showcasing different skills and technologies.
         </motion.p>
         <motion.div
-          className="grid grid-cols-1 md:grid-cols-3 gap-8 w-full max-w-6xl"
+          className="grid grid-cols-1 md:grid-cols-3 gap-8 w-full max-w-6xl mt-12"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: '-50px' }}
@@ -194,7 +194,7 @@ function App() {
                     alt={p.title}
                     className="w-full h-40 object-cover opacity-90 transition-transform duration-500 group-hover/card:scale-105"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover/card:opacity-100 transition-opacity duration-300" />
+                  <div className="absolute inset-0 bg-linear-to-t from-black/60 to-transparent opacity-0 group-hover/card:opacity-100 transition-opacity duration-300" />
                 </div>
                 <div className="p-6 flex-1 flex flex-col">
                   <h3 className="font-semibold text-slate-100 text-lg mb-2">{p.title}</h3>
@@ -209,14 +209,16 @@ function App() {
                       </span>
                     ))}
                   </div>
-                  <div className="flex gap-3">
-                    <MagneticButton href={p.demo} className="flex-1 py-2 text-sm">
-                      Demo ↗
+                  <div className="flex gap-4">
+                    <MagneticButton href={p.demo} className="flex-1 py-2.5 text-sm font-medium flex items-center justify-center gap-2 bg-indigo-500/10 border border-indigo-500/30 hover:bg-indigo-500/20">
+                      <ExternalLink size={16} />
+                      Demo
                     </MagneticButton>
                     <a
                       href={p.code}
-                      className="flex-1 py-2 text-sm rounded-full border border-slate-500/50 text-center text-slate-300 hover:bg-indigo-500/10 hover:border-indigo-500/50 transition-all duration-300"
+                      className="flex-1 py-2.5 text-sm font-medium rounded-full border border-slate-700 bg-slate-800/50 flex items-center justify-center gap-2 text-slate-200 hover:bg-slate-700 hover:border-slate-600 transition-all duration-300"
                     >
+                      <Github size={16} />
                       Code
                     </a>
                   </div>
@@ -232,10 +234,7 @@ function App() {
           className="text-3xl md:text-5xl font-bold mb-2 text-center"
           {...fadeUp}
         >
-          <span className="text-slate-100">Tech </span>
-          <span className="bg-gradient-to-r from-indigo-400 to-purple-500 bg-clip-text text-transparent">
-            Stack
-          </span>
+          <span className="text-slate-100">Tech Stack</span>
         </motion.h2>
         <motion.p
           className="text-slate-400 text-center mb-16"
@@ -253,10 +252,7 @@ function App() {
           className="text-3xl md:text-5xl font-bold mb-6 text-center"
           {...fadeUp}
         >
-          <span className="text-slate-100">Let's </span>
-          <span className="bg-gradient-to-r from-indigo-400 to-purple-500 bg-clip-text text-transparent">
-            Connect
-          </span>
+          <span>Let's Connect</span>
         </motion.h2>
         <motion.p
           className="text-slate-400 text-center max-w-lg mb-10"
@@ -267,17 +263,17 @@ function App() {
           Have a project in mind or just want to chat? I'm always open to discussing new
           opportunities and ideas.
         </motion.p>
-        <MagneticButton href="mailto:hello@example.com" className="mb-12">
+        <MagneticButton href="mailto:hello@example.com" className="mt-8">
           ✉ Send me an email
         </MagneticButton>
         <motion.div
-          className="flex gap-4"
+          className="flex gap-4 mt-8"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
           variants={containerVariants}
         >
-          {SOCIAL.map((s, i) => (
+          {SOCIAL.map((s) => (
             <motion.a
               key={s.name}
               href={s.href}

@@ -23,7 +23,7 @@ export function OrbitalSkills() {
           animate={{ scale: 1, opacity: 1 }}
           transition={{ duration: 0.6 }}
         >
-          <div className="w-24 h-24 rounded-full bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center shadow-lg shadow-indigo-500/40">
+          <div className="w-24 h-24 rounded-full bg-indigo-500/10 border border-indigo-500/40 flex items-center justify-center shadow-lg shadow-black/40 backdrop-blur-md">
             <span className="text-3xl font-bold text-white">N</span>
           </div>
         </motion.div>
@@ -51,10 +51,10 @@ export function OrbitalSkills() {
               onMouseLeave={() => setHoveredIndex(null)}
             >
               <motion.div
-                className="w-12 h-12 rounded-xl flex items-center justify-center text-xs font-semibold bg-black/60 backdrop-blur border border-white/10"
+                className="w-12 h-12 rounded-xl flex items-center justify-center text-xs font-semibold bg-slate-800 border border-slate-700"
                 animate={{
                   scale: isHovered ? 1.2 : 1,
-                  boxShadow: isHovered ? `0 0 20px ${skill.color}40` : 'none',
+                  boxShadow: isHovered ? `0 0 20px rgba(99, 102, 241, 0.3)` : 'none',
                 }}
               >
                 {skill.name.slice(0, 2)}
@@ -73,28 +73,30 @@ export function OrbitalSkills() {
         })}
       </div>
 
-      <div className="mt-16 w-full max-w-md space-y-4">
+      <div className="mt-16 w-full max-w-5xl grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {SKILLS.map((skill, i) => (
           <motion.div
             key={skill.name}
-            className="rounded-xl glass p-4 transition-all duration-300 hover:border-indigo-500/30"
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            className="rounded-xl glass p-5 transition-all duration-300 hover:border-indigo-500/30 hover:shadow-xl hover:shadow-black/20"
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ delay: 0.5 + i * 0.1 }}
+            transition={{ delay: 0.3 + i * 0.1 }}
           >
-            <div className="flex justify-between mb-2">
-              <span className="font-medium text-slate-100">{skill.name}</span>
-              <span className="text-gray-400">{skill.level}%</span>
+            <div className="flex justify-between mb-3 items-center">
+              <span className="font-bold text-slate-100">{skill.name}</span>
+              <span className="text-indigo-400 text-xs font-mono">{skill.level}%</span>
             </div>
-            <div className="h-2 rounded-full bg-slate-700/50 overflow-hidden">
+            <div className="h-2 rounded-full bg-black/40 overflow-hidden backdrop-blur-sm border border-white/5">
               <motion.div
-                className="h-full rounded-full"
-                style={{ backgroundColor: skill.color }}
+                className="h-full rounded-full bg-indigo-500"
+                style={{
+                  boxShadow: `none`,
+                }}
                 initial={{ width: 0 }}
                 whileInView={{ width: `${skill.level}%` }}
                 viewport={{ once: true }}
-                transition={{ duration: 1, delay: 0.6 + i * 0.1 }}
+                transition={{ duration: 1.2, ease: "easeOut", delay: 0.5 + i * 0.1 }}
               />
             </div>
           </motion.div>

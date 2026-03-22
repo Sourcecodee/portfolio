@@ -58,10 +58,10 @@ export function ParticleBackground() {
         const dx = mx - p.x;
         const dy = my - p.y;
         const dist = Math.sqrt(dx * dx + dy * dy);
-        if (dist < 150 && dist > 0) {
-          const force = (150 - dist) / 150;
-          p.vx -= (dx / dist) * force * 0.5;
-          p.vy -= (dy / dist) * force * 0.5;
+        if (dist < 250 && dist > 0) {
+          const force = (250 - dist) / 250;
+          p.vx -= (dx / dist) * force * 1.2;
+          p.vy -= (dy / dist) * force * 1.2;
         }
         p.vx += (p.baseX - p.x) * 0.02;
         p.vy += (p.baseY - p.y) * 0.02;
