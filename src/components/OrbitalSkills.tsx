@@ -50,10 +50,15 @@ function SkillNode({ skill, index }: { skill: any, index: number }) {
       className={`w-full flex flex-row items-center justify-start ${
         isRight ? 'md:justify-end md:pr-[50%]' : 'md:justify-start md:pl-[50%]'
       } group cursor-cell py-12 md:py-8`}
-      initial={{ opacity: 0, x: isRight ? 50 : -50 }}
+      initial={{ opacity: 0, x: isRight ? 100 : -100 }}
       whileInView={{ opacity: 1, x: 0 }}
-      viewport={{ once: false, amount: 0.5 }}
-      transition={{ duration: 0.8, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
+      viewport={{ once: false, amount: 0.3 }}
+      transition={{ 
+        type: "spring",
+        stiffness: 70,
+        damping: 25,
+        delay: index * 0.05 
+      }}
     >
       <div className={`flex items-center ${isRight ? 'md:flex-row-reverse' : 'flex-row'} relative`}>
         {/* Connection Node */}
@@ -61,10 +66,21 @@ function SkillNode({ skill, index }: { skill: any, index: number }) {
         
         {/* Connecting Line Beam */}
         <motion.div 
-          className="h-px bg-white/20 origin-left group-hover:bg-indigo-500 transition-all duration-300 hidden md:block"
+          className="h-px bg-white/20 origin-left hidden md:block"
           initial={{ width: 0 }}
           whileInView={{ width: 80 }}
-          transition={{ duration: 1, delay: 0.5 }}
+          transition={{ 
+            type: "spring",
+            stiffness: 50,
+            damping: 20,
+            delay: 0.3 
+          }}
+          animate={{
+            backgroundColor: "rgba(255, 255, 255, 0.2)"
+          }}
+          whileHover={{
+            backgroundColor: "#6366f1"
+          }}
         />
 
         {/* The Skill Manifesto Block (No Cards, Pure Architecture) */}
