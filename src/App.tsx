@@ -3,11 +3,10 @@ import { ParticleBackground } from './components/ParticleBackground';
 import { FloatingCodeSnippets } from './components/FloatingCodeSnippets';
 import { MorphingNav } from './components/MorphingNav';
 import { MagneticButton } from './components/MagneticButton';
-import { TiltCard } from './components/TiltCard';
 import { OrbitalSkills } from './components/OrbitalSkills';
 import './App.css';
 
-import { Code, Zap, Sparkles, Rocket, ExternalLink, Github, ChevronDown, Link2 } from 'lucide-react';
+import { Link2, ChevronDown } from 'lucide-react';
 import scentreelImg from './assets/scentreel.png';
 import imintImg from './assets/iMint.png';
 import echoverseImg from './assets/echoverse.png';
@@ -15,10 +14,10 @@ import moviedomImg from './assets/moviedom.png';
 import escapeImg from './assets/Escape.png';
 
 const FEATURES = [
-  { icon: Code, title: 'Clean Code', desc: 'Writing maintainable and scalable solutions', color: 'bg-blue-500/20 text-blue-400' },
-  { icon: Rocket, title: 'Performance', desc: 'Optimized for speed and efficiency', color: 'bg-purple-500/20 text-purple-400' },
-  { icon: Sparkles, title: 'Modern Stack', desc: 'Latest technologies and best practices', color: 'bg-indigo-500/20 text-indigo-400' },
-  { icon: Zap, title: 'Fast Delivery', desc: 'Quick iterations and rapid development', color: 'bg-amber-500/20 text-amber-400' },
+  { title: 'Clean Code', desc: 'Writing maintainable and scalable solutions', color: 'bg-blue-500/20 text-blue-400' },
+  { title: 'Performance', desc: 'Optimized for speed and efficiency', color: 'bg-purple-500/20 text-purple-400' },
+  { title: 'Modern Stack', desc: 'Latest technologies and best practices', color: 'bg-indigo-500/20 text-indigo-400' },
+  { title: 'Fast Delivery', desc: 'Quick iterations and rapid development', color: 'bg-amber-500/20 text-amber-400' },
 ];
 
 const PROJECTS = [
@@ -241,60 +240,66 @@ function App() {
         >
           A selection of my recent work showcasing different skills and technologies.
         </motion.p>
-        <motion.div
-          className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 w-full max-w-7xl mt-12"
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: '-50px' }}
-          variants={containerVariants}
+        <div
+          className="mt-24 flex flex-col gap-32 w-full max-w-7xl mx-auto"
         >
           {PROJECTS.map((p, i) => (
-            <TiltCard key={i}>
-              <motion.div
-                className="group/card relative h-full flex flex-col"
-                variants={{ hidden: { opacity: 0, scale: 0.95 }, visible: { opacity: 1, scale: 1 } }}
-                transition={{ duration: 0.5 }}
-              >
-                {/* Image Container with Floating Tags */}
-                <div className="relative aspect-video rounded-xl overflow-hidden glass border border-white/5 bg-black/40 group-hover/card:border-indigo-500/30 transition-all duration-500">
-                  <div className="absolute top-2 left-2 z-10 flex flex-wrap gap-1 opacity-0 group-hover/card:opacity-100 transition-opacity duration-300">
-                    {p.tags.slice(0, 2).map((tag) => (
-                      <span key={tag} className="px-2 py-0.5 text-[9px] font-mono bg-black/60 text-indigo-300 backdrop-blur-md rounded-full border border-white/10">
+            <motion.div
+              key={i}
+              className={`flex flex-col ${i % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'} items-center gap-12 md:gap-20`}
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-100px' }}
+              transition={{ duration: 0.8, delay: 0.1 }}
+            >
+              {/* Image Frame */}
+              <div className="flex-1 w-full group overflow-hidden rounded-2xl glass border border-white/5 bg-black/40 hover:border-indigo-500/30 transition-all duration-500">
+                <div className="relative aspect-video flex items-center justify-center p-2">
+                  <img
+                    src={p.image}
+                    alt={p.title}
+                    className="w-full h-full object-contain opacity-90 group-hover:opacity-100 group-hover:scale-[1.02] transition-all duration-700"
+                  />
+                  <div className="absolute inset-0 bg-linear-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                </div>
+              </div>
+
+              {/* Text Module */}
+              <div className="flex-1 flex flex-col items-start gap-6 max-w-lg">
+                <div className="flex items-center gap-4">
+                  <span className="text-4xl font-black text-white/10 font-mono">0{i + 1}</span>
+                  <div className="h-px w-12 bg-indigo-500/40" />
+                </div>
+                
+                <div>
+                  <h3 className="text-4xl md:text-5xl font-black text-slate-100 mb-4 tracking-tighter">
+                    {p.title}
+                  </h3>
+                  <p className="text-slate-400 text-lg leading-relaxed mb-6 font-serif italic">
+                    {p.desc}
+                  </p>
+                  
+                  <div className="flex flex-wrap gap-3 mb-8">
+                    {p.tags.map((tag) => (
+                      <span key={tag} className="px-3 py-1.5 text-xs font-mono font-bold bg-indigo-500/5 text-indigo-400 border border-indigo-500/20 rounded-lg">
                         {tag}
                       </span>
                     ))}
                   </div>
-                  <img
-                    src={p.image}
-                    alt={p.title}
-                    className="w-full h-full object-contain p-2 opacity-80 group-hover/card:opacity-100 group-hover/card:scale-105 transition-all duration-700"
-                  />
-                  <div className="absolute inset-0 bg-linear-to-t from-black/80 via-transparent to-transparent opacity-60" />
-                </div>
 
-                {/* Content Bar */}
-                <div className="mt-3 px-1 flex flex-col items-start">
-                  <h3 className="text-sm font-bold text-slate-100 tracking-tight group-hover/card:text-indigo-400 transition-colors">
-                    {p.title}
-                  </h3>
-                  <p className="text-[10px] text-slate-400 line-clamp-1 mt-1 opacity-80 group-hover/card:opacity-100 italic font-serif">
-                    {p.desc}
-                  </p>
-                  <div className="w-full mt-3 flex items-center justify-between gap-4">
-                    <MagneticButton 
-                      href={p.demo} 
-                      target="_blank" 
-                      className="flex-1 py-1.5 px-3 text-[10px] uppercase tracking-widest font-black bg-indigo-500/5 border border-indigo-500/20 text-indigo-400 hover:bg-indigo-500/20 hover:text-indigo-300 transition-all"
-                    >
-                      <Link2 size={12} />
-                      Launch
-                    </MagneticButton>
-                  </div>
+                  <MagneticButton 
+                    href={p.demo} 
+                    target="_blank" 
+                    className="py-3 px-10 text-xs uppercase tracking-[0.3em] font-black bg-indigo-500/10 border border-indigo-500/30 text-indigo-400 hover:bg-indigo-500/20 hover:text-indigo-300 transition-all flex items-center justify-center gap-2"
+                  >
+                    <Link2 size={16} />
+                    Link
+                  </MagneticButton>
                 </div>
-              </motion.div>
-            </TiltCard>
+              </div>
+            </motion.div>
           ))}
-        </motion.div>
+        </div>
       </section>
 
       <section id="skills" className="min-h-screen flex flex-col items-center px-6 py-24">

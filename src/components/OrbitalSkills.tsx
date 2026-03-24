@@ -18,16 +18,16 @@ export function OrbitalSkills() {
   });
 
   return (
-    <div ref={containerRef} className="w-full max-w-4xl mx-auto py-32 flex flex-col items-center relative gap-1">
+    <div ref={containerRef} className="w-full max-w-4xl mx-auto py-12 md:py-32 flex flex-col items-start md:items-center relative gap-4 md:gap-1 px-8 md:px-0">
       {/* The Central Cyber-Spine Architecture */}
       <div 
-        className="absolute left-1/2 -translate-x-1/2 w-px bg-white/10 -z-10"
+        className="absolute left-8 md:left-1/2 -ms-px md:-translate-x-1/2 w-px bg-white/10 -z-10"
         style={{ top: '144px', bottom: '144px' }}
       />
       
       {/* Scroll-Synced Kinetic Pulse */}
       <motion.div 
-        className="absolute left-1/2 -translate-x-1/2 w-px bg-indigo-500/40 -z-10 origin-top"
+        className="absolute left-8 md:left-1/2 -ms-px md:-translate-x-1/2 w-px bg-indigo-500/40 -z-10 origin-top"
         style={{ 
           top: '144px', 
           bottom: '144px', 
@@ -47,19 +47,21 @@ function SkillNode({ skill, index }: { skill: any, index: number }) {
 
   return (
     <motion.div
-      className={`w-full flex ${isRight ? 'justify-end pr-[50%]' : 'justify-start pl-[50%]'} items-center group cursor-cell py-8`}
-      initial={{ opacity: 0, x: isRight ? 100 : -100 }}
+      className={`w-full flex flex-row items-center justify-start ${
+        isRight ? 'md:justify-end md:pr-[50%]' : 'md:justify-start md:pl-[50%]'
+      } group cursor-cell py-12 md:py-8`}
+      initial={{ opacity: 0, x: isRight ? 50 : -50 }}
       whileInView={{ opacity: 1, x: 0 }}
       viewport={{ once: false, amount: 0.5 }}
       transition={{ duration: 0.8, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
     >
-      <div className={`flex items-center ${isRight ? 'flex-row-reverse' : 'flex-row'} relative`}>
+      <div className={`flex items-center ${isRight ? 'md:flex-row-reverse' : 'flex-row'} relative`}>
         {/* Connection Node */}
-        <div className="w-3 h-3 rounded-full border border-white/40 bg-slate-900 group-hover:scale-150 group-hover:bg-indigo-500 group-hover:border-indigo-400 transition-all duration-300 relative z-10" />
+        <div className="w-2.5 h-2.5 rounded-full border border-white/40 bg-slate-900 group-hover:scale-150 group-hover:bg-indigo-500 group-hover:border-indigo-400 transition-all duration-300 relative z-10" />
         
         {/* Connecting Line Beam */}
         <motion.div 
-          className="h-px bg-white/20 origin-left group-hover:bg-indigo-500 transition-all duration-300"
+          className="h-px bg-white/20 origin-left group-hover:bg-indigo-500 transition-all duration-300 hidden md:block"
           initial={{ width: 0 }}
           whileInView={{ width: 80 }}
           transition={{ duration: 1, delay: 0.5 }}
