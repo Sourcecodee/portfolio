@@ -1,5 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Nova+Flat&family=Orbitron:wght@400;700;900&family=Michroma&family=Outfit:wght@400;700;900&family=JetBrains+Mono:wght@400;500&family=Inter:wght@400;500;600;700&display=swap');
 @import "tailwindcss";
-@import url('https://fonts.googleapis.com/css2?family=Michroma&family=Outfit:wght@400;700;900&family=JetBrains+Mono:wght@400;500&family=Inter:wght@400;500;600;700&display=swap');
 
 /* Dark theme with indigo/purple accents - glassmorphism */
 :root {
@@ -19,7 +19,7 @@
   --sans: 'Inter', system-ui, sans-serif;
   --heading: 'Outfit', sans-serif;
   --mono: 'JetBrains Mono', monospace;
-  --font-name: 'Michroma', sans-serif;
+  --font-name: 'Nova Flat', sans-serif;
 
   font: 18px/145% var(--sans);
   letter-spacing: 0.18px;

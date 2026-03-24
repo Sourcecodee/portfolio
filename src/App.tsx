@@ -59,8 +59,8 @@ const PROJECTS = [
 ];
 
 const SOCIAL = [
-  { name: 'GitHub', href: 'https://github.com', icon: '↗' },
-  { name: 'LinkedIn', href: 'https://linkedin.com', icon: 'in' },
+  { name: 'GitHub', href: 'https://github.com/Sourcecodee', icon: '↗' },
+  { name: 'LinkedIn', href: 'https://www.linkedin.com/in/yusuf-mshelia-867557a4/', icon: 'in' },
   { name: 'Twitter', href: 'https://x.com', icon: '𝕏' },
   { name: 'Email', href: 'mailto:hello@example.com', icon: '✉' },
 ];
@@ -126,7 +126,7 @@ function App() {
             </div>
 
             {/* Monumental Name */}
-            <h1 className="text-4xl md:text-7xl lg:text-[13rem] font-black mb-6 tracking-tighter flex flex-wrap justify-center font-['Michroma'] leading-none text-center">
+            <h1 className="text-4xl md:text-7xl lg:text-[13rem] mb-6 tracking-tighter flex flex-wrap justify-center font-['Nova_Flat'] leading-none text-center">
               <span className="flex flex-wrap justify-center">
                 {"Yusuf ".split("").map((char, i) => (
                   <motion.span
@@ -164,7 +164,7 @@ function App() {
         </motion.div>
 
         <motion.div
-          className="absolute bottom-12 text-indigo-500/40"
+          className="absolute bottom-12 text-white"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1.2 }}
@@ -320,7 +320,7 @@ function App() {
         <OrbitalSkills />
       </section>
 
-      <section id="contact" className="min-h-screen flex flex-col items-center justify-center px-6 py-24">
+      <section id="contact" className="min-h-screen flex flex-col items-center justify-center px-6 py-16">
         <motion.h2
           className="text-3xl md:text-5xl font-bold mb-6 text-center"
           {...fadeUp}
@@ -336,9 +336,14 @@ function App() {
           Have a project in mind or just want to chat? I'm always open to discussing new
           opportunities and ideas.
         </motion.p>
-        <MagneticButton href="mailto:hello@example.com" className="mt-8">
+        <motion.a
+          href="mailto:hello@example.com"
+          className="mt-8 px-10 py-4 glass text-slate-100 font-bold rounded-full border border-white/10 hover:border-indigo-500/50 hover:bg-indigo-500/10 transition-all duration-300 shadow-xl shadow-black/20"
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.98 }}
+        >
           ✉ Send me an email
-        </MagneticButton>
+        </motion.a>
         <motion.div
           className="flex gap-4 mt-8"
           initial="hidden"
@@ -361,7 +366,7 @@ function App() {
             </motion.a>
           ))}
         </motion.div>
-        <footer className="mt-24 pt-8 border-t border-slate-800 text-slate-500 text-sm">
+        <footer className="mt-24 pt-8 border-t border-slate-800 text-slate-300 text-sm">
           © 2026 Yusuf Mshelia. Crafted with React & Motion
         </footer>
       </section>

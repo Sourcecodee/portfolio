@@ -5,8 +5,7 @@ interface Particle {
   y: number;
   vx: number;
   vy: number;
-  baseX: number;
-  baseY: number;
+  size: number;
 }
 
 export function ParticleBackground() {
@@ -19,7 +18,7 @@ export function ParticleBackground() {
     const canvas = canvasRef.current;
     if (!canvas) return;
 
-    const ctx = canvas.getContext('2d');
+    const ctx = canvas.getContext('2d', { alpha: false });
     if (!ctx) return;
 
     const resize = () => {
@@ -29,19 +28,14 @@ export function ParticleBackground() {
     };
 
     const initParticles = () => {
-      const count = Math.min(80, Math.floor((canvas.width * canvas.height) / 15000));
+      const count = Math.min(100, Math.floor((canvas.width * canvas.height) / 12000));
       particlesRef.current = Array.from({ length: count }, () => ({
         x: Math.random() * canvas.width,
         y: Math.random() * canvas.height,
-        vx: 0,
-        vy: 0,
-        baseX: 0,
-        baseY: 0,
+        vx: (Math.random() - 0.5) * 0.5,
+        vy: (Math.random() - 0.5) * 0.5,
+        size: Math.random() * 1.5 + 0.5,
       }));
-      particlesRef.current.forEach((p) => {
-        p.baseX = p.x;
-        p.baseY = p.y;
-      });
     };
 
     const handleMouseMove = (e: MouseEvent) => {
@@ -49,51 +43,68 @@ export function ParticleBackground() {
     };
 
     const animate = () => {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      // Create trailing effect by not fully clearing
+      ctx.fillStyle = 'rgba(10, 10, 15, 0.08)';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
       const mx = mouseRef.current.x;
       const my = mouseRef.current.y;
       const particles = particlesRef.current;
 
-      particles.forEach((p) => {
+      particles.forEach((p, i) => {
+        // Update velocity based on mouse proximity
         const dx = mx - p.x;
         const dy = my - p.y;
         const dist = Math.sqrt(dx * dx + dy * dy);
-        if (dist < 250 && dist > 0) {
-          const force = (250 - dist) / 250;
-          p.vx -= (dx / dist) * force * 1.2;
-          p.vy -= (dy / dist) * force * 1.2;
+        
+        if (dist < 100) {
+          const force = (100 - dist) / 3000; // Much weaker pull
+          p.vx += dx * force;
+          p.vy += dy * force;
         }
-        p.vx += (p.baseX - p.x) * 0.02;
-        p.vy += (p.baseY - p.y) * 0.02;
-        p.vx *= 0.9;
-        p.vy *= 0.9;
+
+        // Apply constant drift and damping
         p.x += p.vx;
         p.y += p.vy;
+        p.vx *= 0.99;
+        p.vy *= 0.99;
 
-        if (p.x < 0 || p.x > canvas.width) p.baseX = p.x = Math.max(0, Math.min(canvas.width, p.x));
-        if (p.y < 0 || p.y > canvas.height) p.baseY = p.y = Math.max(0, Math.min(canvas.height, p.y));
+        // Bounce off walls
+        if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
+        if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
 
+        // Constant minor random impulse to prevent static state
+        p.vx += (Math.random() - 0.5) * 0.01;
+        p.vy += (Math.random() - 0.5) * 0.01;
+
+        // Draw particle
         ctx.beginPath();
-        ctx.arc(p.x, p.y, 2, 0, Math.PI * 2);
-        ctx.fillStyle = 'rgba(99, 102, 241, 0.9)';
+        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+        ctx.fillStyle = 'rgba(255, 255, 255, 0.6)';
         ctx.fill();
-      });
 
-      particles.forEach((p, i) => {
-        particles.slice(i + 1).forEach((p2) => {
-          const dx = p.x - p2.x;
-          const dy = p.y - p2.y;
-          const dist = Math.sqrt(dx * dx + dy * dy);
-          if (dist < 120) {
-            const opacity = (1 - dist / 120) * 0.3;
+        // Draw connections (Connecting and Breaking with density cap)
+        let connections = 0;
+        for (let j = i + 1; j < particles.length; j++) {
+          if (connections >= 5) break; 
+          
+          const p2 = particles[j];
+          const dx2 = p.x - p2.x;
+          const dy2 = p.y - p2.y;
+          const dist2 = Math.sqrt(dx2 * dx2 + dy2 * dy2);
+
+          if (dist2 < 120) {
+            connections++;
+            const opacity = (1 - dist2 / 120) * 0.25;
             ctx.beginPath();
             ctx.moveTo(p.x, p.y);
             ctx.lineTo(p2.x, p2.y);
-            ctx.strokeStyle = `rgba(129, 140, 248, ${opacity})`;
+            // Whitish trail look for lines
+            ctx.strokeStyle = `rgba(255, 255, 255, ${opacity})`;
             ctx.lineWidth = 0.5;
             ctx.stroke();
           }
-        });
+        }
       });
 
       animationRef.current = requestAnimationFrame(animate);
@@ -114,8 +125,7 @@ export function ParticleBackground() {
   return (
     <canvas
       ref={canvasRef}
-      className="fixed inset-0 w-full h-full -z-10"
-      style={{ background: '#0a0a0f' }}
+      className="fixed inset-0 w-full h-full -z-10 bg-[#0a0a0f]"
     />
   );
 }

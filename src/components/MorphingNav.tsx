@@ -39,7 +39,7 @@ export function MorphingNav() {
           <button
             key={item.id}
             onClick={() => handleClick(item.id)}
-            className="relative w-10 h-10 flex items-center justify-center rounded-full text-slate-400/80 hover:text-white transition-all duration-300"
+            className="relative w-10 h-10 flex items-center justify-center rounded-full text-slate-400/80 hover:text-white transition-all duration-300 cursor-pointer"
           >
             <item.icon
               size={18}
