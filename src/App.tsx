@@ -7,7 +7,12 @@ import { TiltCard } from './components/TiltCard';
 import { OrbitalSkills } from './components/OrbitalSkills';
 import './App.css';
 
-import { Code, Zap, Sparkles, Rocket, ExternalLink, Github, ChevronDown } from 'lucide-react';
+import { Code, Zap, Sparkles, Rocket, ExternalLink, Github, ChevronDown, Link2 } from 'lucide-react';
+import scentreelImg from './assets/scentreel.png';
+import imintImg from './assets/iMint.png';
+import echoverseImg from './assets/echoverse.png';
+import moviedomImg from './assets/moviedom.png';
+import escapeImg from './assets/Escape.png';
 
 const FEATURES = [
   { icon: Code, title: 'Clean Code', desc: 'Writing maintainable and scalable solutions', color: 'bg-blue-500/20 text-blue-400' },
@@ -18,28 +23,39 @@ const FEATURES = [
 
 const PROJECTS = [
   {
-    title: 'E-Commerce Platform',
-    desc: 'A full-featured e-commerce solution with real-time inventory, payment integration, and admin dashboard.',
-    tags: ['React', 'TypeScript', 'Stripe', 'Redux'],
-    demo: '#',
-    code: '#',
-    image: 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=600&h=400&fit=crop',
+    title: 'Scentreel',
+    desc: 'An immersive perfume experience featuring stunning visuals and smooth animations. Built for exploration.',
+    tags: ['React', 'MUI', 'Redux'],
+    demo: 'https://dev3146.d2yz77mojymfsu.amplifyapp.com',
+    image: scentreelImg,
   },
   {
-    title: 'Design System',
-    desc: 'A comprehensive component library with an accessibility-first approach and extensive documentation.',
-    tags: ['React', 'Storybook', 'Tailwind', 'a11y'],
-    demo: '#',
-    code: '#',
-    image: 'https://images.unsplash.com/photo-1586717799252-22cf4f8e74a6?w=600&h=400&fit=crop',
+    title: 'iMint',
+    desc: 'A premium used iPhone marketplace with a focus on product visuals and seamless user experience.',
+    tags: ['TypeScript', 'React', 'Tailwind', 'Responsive CSS'],
+    demo: 'https://imint.d2zf5d9rqz60dl.amplifyapp.com',
+    image: imintImg,
   },
   {
-    title: 'AI Dashboard',
-    desc: 'Interactive data visualization dashboard with real-time analytics and AI-powered insights.',
-    tags: ['Next.js', 'D3.js', 'WebSocket', 'OpenAI'],
-    demo: '#',
-    code: '#',
-    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop',
+    title: 'EchoVerse',
+    desc: 'High-fidelity music streaming platform for a next-gen audio experience.',
+    tags: ['TypeScript', 'React', 'Framer Motion'],
+    demo: 'https://echo.d21s7gad01covv.amplifyapp.com/',
+    image: echoverseImg,
+  },
+  {
+    title: 'Moviedom',
+    desc: 'Comprehensive movie database and streaming hub with deep TMDB integration.',
+    tags: ['Javascript', 'Responsive CSS'],
+    demo: 'https://moviedom.d1bc2kwkrzo36w.amplifyapp.com',
+    image: moviedomImg,
+  },
+  {
+    title: 'Escape',
+    desc: 'Adventure-first travel platform for discovering and booking unique experiences.',
+    tags: ['React', 'MUI', 'React Slick'],
+    demo: 'https://staging.d6mqsufv5emv8.amplifyapp.com',
+    image: escapeImg,
   },
 ];
 
@@ -94,11 +110,55 @@ function App() {
           >
             Hi, I'm
           </motion.p>
-          <h1 className="text-6xl md:text-8xl lg:text-9xl font-bold mb-6 tracking-tighter">
-            <span className="text-white">Yusuf </span>
-            <span className="text-purple-500">Mshelia</span>
-          </h1>
-          <p className="text-slate-100 text-xl md:text-3xl font-medium opacity-90">React Developer</p>
+          <div className="flex flex-col items-center w-full max-w-7xl mx-auto">
+            {/* Initialization Prompt */}
+            <div className="h-4 mb-4 flex items-center justify-center">
+              {"...".split("").map((char, i) => (
+                <motion.span
+                  key={`dot-${i}`}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: [0, 1, 0] }}
+                  transition={{ duration: 1, delay: i * 0.2 }}
+                  className="text-indigo-500 mx-1 font-mono text-xl"
+                >
+                  {char}
+                </motion.span>
+              ))}
+            </div>
+
+            {/* Monumental Name */}
+            <h1 className="text-4xl md:text-7xl lg:text-[13rem] font-black mb-6 tracking-tighter flex flex-wrap justify-center font-['Michroma'] leading-none text-center">
+              <span className="flex flex-wrap justify-center">
+                {"Yusuf ".split("").map((char, i) => (
+                  <motion.span
+                    key={i}
+                    initial={{ opacity: 0, scale: 0.5, filter: "blur(10px)" }}
+                    animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
+                    transition={{ duration: 0.2, delay: 0.8 + i * 0.08, ease: [0.16, 1, 0.3, 1] }}
+                    className={char === " " ? "mr-4 md:mr-10 text-white" : "text-white"}
+                  >
+                    {char}
+                  </motion.span>
+                ))}
+                {"Mshelia".split("").map((char, i) => (
+                  <motion.span
+                    key={i + 6}
+                    initial={{ opacity: 0, scale: 0.5, filter: "blur(10px)" }}
+                    animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
+                    transition={{ duration: 0.2, delay: 0.8 + (i + 6) * 0.08, ease: [0.16, 1, 0.3, 1] }}
+                    className="text-purple-500"
+                  >
+                    {char}
+                  </motion.span>
+                ))}
+              </span>
+            </h1>
+
+            {/* Professional Role */}
+            <p className="text-slate-100/80 text-lg md:text-2xl font-bold font-mono tracking-[0.4em] uppercase mt-8 text-center px-4">
+              React Developer
+            </p>
+          </div>
           <p className="text-slate-400 text-sm md:text-base max-w-md mx-auto mt-6 opacity-60">
             Building the future, one component at a time
           </p>
@@ -138,23 +198,30 @@ function App() {
           create digital experiences that not only look great but perform exceptionally.
         </motion.p>
         <div
-          className="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 w-full max-w-6xl items-stretch"
+          className="mt-24 flex flex-col items-start gap-20 w-full max-w-6xl relative"
         >
           {FEATURES.map((f, i) => (
-            <div key={i} className="flex">
-              <motion.div
-                className="p-8 rounded-2xl glass w-full text-left border border-white/10 flex flex-col group/feature shadow-xl shadow-black/40"
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.5, delay: i * 0.15 }}
-              >
-                <div className={`mb-6 p-3 rounded-lg w-fit ${f.color}`}>
-                  <f.icon size={28} />
-                </div>
-                <h3 className="font-bold text-slate-100 text-lg mb-3 tracking-wide">{f.title}</h3>
-                <p className="text-slate-400 text-sm leading-relaxed flex-1">{f.desc}</p>
-              </motion.div>
-            </div>
+            <motion.div
+              key={i}
+              className="max-w-md group/feature"
+              initial={{ opacity: 0, x: -150, filter: "blur(4px)" }}
+              whileInView={{ opacity: 1, x: 0, filter: "blur(0px)" }}
+              viewport={{ once: false, amount: 0.2 }}
+              transition={{ 
+                type: "spring",
+                stiffness: 40,
+                damping: 15,
+                delay: 0.1 
+              }}
+              style={{ marginLeft: `${i * 25}%` }}
+            >
+              <h3 className="font-bold text-slate-100 text-3xl md:text-4xl mb-3 tracking-tighter group-hover/feature:text-indigo-400 transition-colors duration-300">
+                {f.title}
+              </h3>
+              <p className="text-slate-400 text-lg md:text-xl leading-relaxed max-w-sm">
+                {f.desc}
+              </p>
+            </motion.div>
           ))}
         </div>
       </section>
@@ -175,7 +242,7 @@ function App() {
           A selection of my recent work showcasing different skills and technologies.
         </motion.p>
         <motion.div
-          className="grid grid-cols-1 md:grid-cols-3 gap-8 w-full max-w-6xl mt-12"
+          className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 w-full max-w-7xl mt-12"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: '-50px' }}
@@ -184,43 +251,44 @@ function App() {
           {PROJECTS.map((p, i) => (
             <TiltCard key={i}>
               <motion.div
-                className="rounded-2xl glass overflow-hidden h-full flex flex-col transition-all duration-300 hover:border-indigo-500/30 hover:shadow-xl hover:shadow-indigo-500/5 group/card"
-                variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
+                className="group/card relative h-full flex flex-col"
+                variants={{ hidden: { opacity: 0, scale: 0.95 }, visible: { opacity: 1, scale: 1 } }}
                 transition={{ duration: 0.5 }}
               >
-                <div className="relative overflow-hidden">
-                  <img
-                    src={p.image}
-                    alt={p.title}
-                    className="w-full h-40 object-cover opacity-90 transition-transform duration-500 group-hover/card:scale-105"
-                  />
-                  <div className="absolute inset-0 bg-linear-to-t from-black/60 to-transparent opacity-0 group-hover/card:opacity-100 transition-opacity duration-300" />
-                </div>
-                <div className="p-6 flex-1 flex flex-col">
-                  <h3 className="font-semibold text-slate-100 text-lg mb-2">{p.title}</h3>
-                  <p className="text-slate-400 text-sm mb-4 flex-1">{p.desc}</p>
-                  <div className="flex flex-wrap gap-2 mb-4">
-                    {p.tags.map((tag) => (
-                      <span
-                        key={tag}
-                        className="px-2 py-1 text-xs rounded-lg bg-indigo-500/10 text-indigo-300 border border-indigo-500/20"
-                      >
+                {/* Image Container with Floating Tags */}
+                <div className="relative aspect-video rounded-xl overflow-hidden glass border border-white/5 bg-black/40 group-hover/card:border-indigo-500/30 transition-all duration-500">
+                  <div className="absolute top-2 left-2 z-10 flex flex-wrap gap-1 opacity-0 group-hover/card:opacity-100 transition-opacity duration-300">
+                    {p.tags.slice(0, 2).map((tag) => (
+                      <span key={tag} className="px-2 py-0.5 text-[9px] font-mono bg-black/60 text-indigo-300 backdrop-blur-md rounded-full border border-white/10">
                         {tag}
                       </span>
                     ))}
                   </div>
-                  <div className="flex gap-4">
-                    <MagneticButton href={p.demo} className="flex-1 py-2.5 text-sm font-medium flex items-center justify-center gap-2 bg-indigo-500/10 border border-indigo-500/30 hover:bg-indigo-500/20">
-                      <ExternalLink size={16} />
-                      Demo
-                    </MagneticButton>
-                    <a
-                      href={p.code}
-                      className="flex-1 py-2.5 text-sm font-medium rounded-full border border-slate-700 bg-slate-800/50 flex items-center justify-center gap-2 text-slate-200 hover:bg-slate-700 hover:border-slate-600 transition-all duration-300"
+                  <img
+                    src={p.image}
+                    alt={p.title}
+                    className="w-full h-full object-contain p-2 opacity-80 group-hover/card:opacity-100 group-hover/card:scale-105 transition-all duration-700"
+                  />
+                  <div className="absolute inset-0 bg-linear-to-t from-black/80 via-transparent to-transparent opacity-60" />
+                </div>
+
+                {/* Content Bar */}
+                <div className="mt-3 px-1 flex flex-col items-start">
+                  <h3 className="text-sm font-bold text-slate-100 tracking-tight group-hover/card:text-indigo-400 transition-colors">
+                    {p.title}
+                  </h3>
+                  <p className="text-[10px] text-slate-400 line-clamp-1 mt-1 opacity-80 group-hover/card:opacity-100 italic font-serif">
+                    {p.desc}
+                  </p>
+                  <div className="w-full mt-3 flex items-center justify-between gap-4">
+                    <MagneticButton 
+                      href={p.demo} 
+                      target="_blank" 
+                      className="flex-1 py-1.5 px-3 text-[10px] uppercase tracking-widest font-black bg-indigo-500/5 border border-indigo-500/20 text-indigo-400 hover:bg-indigo-500/20 hover:text-indigo-300 transition-all"
                     >
-                      <Github size={16} />
-                      Code
-                    </a>
+                      <Link2 size={12} />
+                      Launch
+                    </MagneticButton>
                   </div>
                 </div>
               </motion.div>

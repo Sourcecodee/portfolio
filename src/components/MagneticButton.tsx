@@ -6,9 +6,10 @@ interface MagneticButtonProps {
   className?: string;
   onClick?: () => void;
   href?: string;
+  target?: string;
 }
 
-export function MagneticButton({ children, className = '', onClick, href }: MagneticButtonProps) {
+export function MagneticButton({ children, className = '', onClick, href, target }: MagneticButtonProps) {
   const x = useMotionValue(0);
   const y = useMotionValue(0);
   const springConfig = { damping: 15, stiffness: 150 };
@@ -47,6 +48,8 @@ export function MagneticButton({ children, className = '', onClick, href }: Magn
     return (
       <a
         href={href}
+        target={target}
+        rel={target === '_blank' ? 'noopener noreferrer' : undefined}
         className={baseClass}
         onMouseMove={handleMouseMove}
         onMouseLeave={handleMouseLeave}

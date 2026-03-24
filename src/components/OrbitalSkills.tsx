@@ -1,107 +1,83 @@
-import { motion } from 'framer-motion';
-import { useState } from 'react';
+import { motion, useScroll } from 'framer-motion';
+import { useRef } from 'react';
 
 const SKILLS = [
-  { name: 'React', level: 95, color: '#61DAFB' },
-  { name: 'TypeScript', level: 90, color: '#3178C6' },
-  { name: 'JavaScript', level: 93, color: '#F7DF1E' },
-  { name: 'Tailwind', level: 92, color: '#06B6D4' },
-  { name: 'Node.js', level: 80, color: '#339933' },
+  { name: 'React', category: 'Interface Synthesis' },
+  { name: 'TypeScript', category: 'Logic Architecture' },
+  { name: 'JavaScript', category: 'Neural Core' },
+  { name: 'Tailwind', category: 'Visual Matrix' },
+  { name: 'Node.js', category: 'Server Backbone' },
+  { name: 'Framer Motion', category: 'Kinetic Flow' },
 ];
 
 export function OrbitalSkills() {
-  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
-  const radius = 140;
-  const count = SKILLS.length;
+  const containerRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start end", "end start"]
+  });
 
   return (
-    <div className="relative flex flex-col items-center justify-center min-h-[400px] py-12">
-      <div className="relative w-[320px] h-[320px]">
-        <motion.div
-          className="absolute inset-0 flex items-center justify-center"
-          initial={{ scale: 0.8, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          transition={{ duration: 0.6 }}
-        >
-          <div className="w-24 h-24 rounded-full bg-indigo-500/10 border border-indigo-500/40 flex items-center justify-center shadow-lg shadow-black/40 backdrop-blur-md">
-            <span className="text-3xl font-bold text-white">N</span>
-          </div>
-        </motion.div>
+    <div ref={containerRef} className="w-full max-w-4xl mx-auto py-32 flex flex-col items-center relative gap-1">
+      {/* The Central Cyber-Spine Architecture */}
+      <div 
+        className="absolute left-1/2 -translate-x-1/2 w-px bg-white/10 -z-10"
+        style={{ top: '144px', bottom: '144px' }}
+      />
+      
+      {/* Scroll-Synced Kinetic Pulse */}
+      <motion.div 
+        className="absolute left-1/2 -translate-x-1/2 w-px bg-indigo-500/40 -z-10 origin-top"
+        style={{ 
+          top: '144px', 
+          bottom: '144px', 
+          scaleY: scrollYProgress 
+        }}
+      />
 
-        {SKILLS.map((skill, i) => {
-          const angle = (i / count) * 2 * Math.PI - Math.PI / 2;
-          const x = Math.cos(angle) * radius + 160;
-          const y = Math.sin(angle) * radius + 160;
-          const isHovered = hoveredIndex === i;
-
-          return (
-            <motion.div
-              key={skill.name}
-              className="absolute cursor-pointer"
-              style={{
-                left: x - 24,
-                top: y - 24,
-                width: 48,
-                height: 48,
-              }}
-              initial={{ scale: 0, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              transition={{ delay: 0.2 + i * 0.1 }}
-              onMouseEnter={() => setHoveredIndex(i)}
-              onMouseLeave={() => setHoveredIndex(null)}
-            >
-              <motion.div
-                className="w-12 h-12 rounded-xl flex items-center justify-center text-xs font-semibold bg-slate-800 border border-slate-700"
-                animate={{
-                  scale: isHovered ? 1.2 : 1,
-                  boxShadow: isHovered ? `0 0 20px rgba(99, 102, 241, 0.3)` : 'none',
-                }}
-              >
-                {skill.name.slice(0, 2)}
-              </motion.div>
-              {isHovered && (
-                <motion.div
-                  initial={{ opacity: 0, y: 5 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  className="absolute left-1/2 -translate-x-1/2 top-full mt-2 px-3 py-1.5 rounded-lg glass-strong text-slate-100 text-xs whitespace-nowrap"
-                >
-                  {skill.name} {skill.level}%
-                </motion.div>
-              )}
-            </motion.div>
-          );
-        })}
-      </div>
-
-      <div className="mt-16 w-full max-w-5xl grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {SKILLS.map((skill, i) => (
-          <motion.div
-            key={skill.name}
-            className="rounded-xl glass p-5 transition-all duration-300 hover:border-indigo-500/30 hover:shadow-xl hover:shadow-black/20"
-            initial={{ opacity: 0, y: 10 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.3 + i * 0.1 }}
-          >
-            <div className="flex justify-between mb-3 items-center">
-              <span className="font-bold text-slate-100">{skill.name}</span>
-              <span className="text-indigo-400 text-xs font-mono">{skill.level}%</span>
-            </div>
-            <div className="h-2 rounded-full bg-black/40 overflow-hidden backdrop-blur-sm border border-white/5">
-              <motion.div
-                className="h-full rounded-full bg-indigo-500"
-                style={{
-                  boxShadow: `none`,
-                }}
-                initial={{ width: 0 }}
-                whileInView={{ width: `${skill.level}%` }}
-                viewport={{ once: true }}
-                transition={{ duration: 1.2, ease: "easeOut", delay: 0.5 + i * 0.1 }}
-              />
-            </div>
-          </motion.div>
-        ))}
-      </div>
+      {SKILLS.map((skill, i) => (
+        <SkillNode key={i} skill={skill} index={i} />
+      ))}
     </div>
+  );
+}
+
+function SkillNode({ skill, index }: { skill: any, index: number }) {
+  const isRight = index % 2 === 0;
+
+  return (
+    <motion.div
+      className={`w-full flex ${isRight ? 'justify-end pr-[50%]' : 'justify-start pl-[50%]'} items-center group cursor-cell py-8`}
+      initial={{ opacity: 0, x: isRight ? 100 : -100 }}
+      whileInView={{ opacity: 1, x: 0 }}
+      viewport={{ once: false, amount: 0.5 }}
+      transition={{ duration: 0.8, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
+    >
+      <div className={`flex items-center ${isRight ? 'flex-row-reverse' : 'flex-row'} relative`}>
+        {/* Connection Node */}
+        <div className="w-3 h-3 rounded-full border border-white/40 bg-slate-900 group-hover:scale-150 group-hover:bg-indigo-500 group-hover:border-indigo-400 transition-all duration-300 relative z-10" />
+        
+        {/* Connecting Line Beam */}
+        <motion.div 
+          className="h-px bg-white/20 origin-left group-hover:bg-indigo-500 transition-all duration-300"
+          initial={{ width: 0 }}
+          whileInView={{ width: 80 }}
+          transition={{ duration: 1, delay: 0.5 }}
+        />
+
+        {/* The Skill Manifesto Block (No Cards, Pure Architecture) */}
+        <div className={`flex flex-col ${isRight ? 'items-end mr-6 text-right' : 'items-start ml-6 text-left'} min-w-[200px]`}>
+          <span className="text-[10px] font-mono text-indigo-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300 tracking-[0.5em] mb-1">
+            {skill.category}
+          </span>
+          <h4 className="text-3xl md:text-5xl font-black text-white/40 group-hover:text-white transition-all duration-500 tracking-tighter uppercase line-height-[0.8]">
+            {skill.name}
+          </h4>
+
+          {/* Holographic Shift Underline */}
+          <div className="w-0 h-px bg-indigo-500 group-hover:w-full transition-all duration-700 mt-2" />
+        </div>
+      </div>
+    </motion.div>
   );
 }

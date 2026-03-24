@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Michroma&family=Outfit:wght@400;700;900&family=JetBrains+Mono:wght@400;500&family=Inter:wght@400;500;600;700&display=swap');
 
 /* Dark theme with indigo/purple accents - glassmorphism */
 :root {
@@ -16,8 +17,9 @@
   --code-bg: #1a1b26;
 
   --sans: 'Inter', system-ui, sans-serif;
-  --heading: 'Inter', system-ui, sans-serif;
-  --mono: ui-monospace, Consolas, monospace;
+  --heading: 'Outfit', sans-serif;
+  --mono: 'JetBrains Mono', monospace;
+  --font-name: 'Michroma', sans-serif;
 
   font: 18px/145% var(--sans);
   letter-spacing: 0.18px;

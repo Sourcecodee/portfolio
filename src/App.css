@@ -1,1 +1,16 @@
 /* Portfolio-specific overrides - Tailwind handles most styling */
+
+@keyframes scan {
+  from { transform: translateY(-100%); opacity: 0; }
+  50% { opacity: 0.5; }
+  to { transform: translateY(200%); opacity: 0; }
+}
+
+.animate-scan {
+  animation: scan 1.5s linear infinite;
+}
+
+/* Custom glow effect */
+.glow-card {
+  box-shadow: 0 0 20px rgba(99, 102, 241, 0.15);
+}
