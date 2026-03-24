@@ -17,7 +17,7 @@ const SNIPPETS = [
 
 export function FloatingCodeSnippets() {
   return (
-    <div className="fixed inset-0 overflow-hidden pointer-events-none -z-[5]" aria-hidden>
+    <div className="fixed inset-0 overflow-hidden pointer-events-none -z-5" aria-hidden>
       {SNIPPETS.map((snippet, i) => (
         <motion.span
           key={i}
