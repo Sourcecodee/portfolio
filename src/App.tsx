@@ -104,7 +104,7 @@ function App() {
            transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
         >
           <motion.p
-            className="text-indigo-400 text-sm md:text-base mb-4 font-medium tracking-widest uppercase"
+            className="text-white text-sm md:text-base mb-4 font-medium tracking-widest uppercase"
           >
             Hi, I'm
           </motion.p>
@@ -153,7 +153,7 @@ function App() {
             </h1>
 
             {/* Professional Role */}
-            <p className="text-slate-100/80 text-lg md:text-2xl font-bold font-mono tracking-[0.4em] uppercase mt-8 text-center px-4">
+            <p className="text-slate-100/80 text-lg md:text-2xl font-bold font-mono tracking-[0.4em] uppercase mt-8 md:pb-4 pb-0 text-center px-4">
               React Developer
             </p>
           </div>
