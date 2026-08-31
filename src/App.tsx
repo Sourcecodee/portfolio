@@ -2,23 +2,20 @@ import { motion } from 'framer-motion';
 import { ParticleBackground } from './components/ParticleBackground';
 import { FloatingCodeSnippets } from './components/FloatingCodeSnippets';
 import { MorphingNav } from './components/MorphingNav';
-import { MagneticButton } from './components/MagneticButton';
 import { OrbitalSkills } from './components/OrbitalSkills';
 import { ContactForm } from './components/ContactForm';
 import './App.css';
 
-import { Link2, ChevronDown } from 'lucide-react';
 import scentreelImg from './assets/scentreel.png';
 import imintImg from './assets/iMint.png';
-import echoverseImg from './assets/echoverse.png';
 import moviedomImg from './assets/moviedom.png';
 import escapeImg from './assets/Escape.png';
 
 const FEATURES = [
-  { title: 'Clean Code', desc: 'Writing maintainable and scalable solutions', color: 'bg-blue-500/20 text-blue-400' },
-  { title: 'Performance', desc: 'Optimized for speed and efficiency', color: 'bg-purple-500/20 text-purple-400' },
-  { title: 'Modern Stack', desc: 'Latest technologies and best practices', color: 'bg-indigo-500/20 text-indigo-400' },
-  { title: 'Fast Delivery', desc: 'Quick iterations and rapid development', color: 'bg-amber-500/20 text-amber-400' },
+  { title: 'Code you can re-read at 2am', desc: 'No decoder ring needed. Clear names, small functions, comments only where the why isn’t obvious.' },
+  { title: 'Fast is a feeling', desc: 'Prefetch, memo, lazy-load — so it never stutters on that old Android in your drawer.' },
+  { title: 'Stack that won’t haunt you', desc: 'Current, supported, boring in a good way. No 2018 boilerplate you’ll Google in 6 months.' },
+  { title: 'We ship, not just commit', desc: 'Small PRs, quick demos, feedback before the rabbit hole gets deep.' },
 ];
 
 const PROJECTS = [
@@ -35,13 +32,6 @@ const PROJECTS = [
     tags: ['TypeScript', 'React', 'Tailwind', 'Responsive CSS'],
     demo: 'https://imint.d2zf5d9rqz60dl.amplifyapp.com',
     image: imintImg,
-  },
-  {
-    title: 'EchoVerse',
-    desc: 'High-fidelity music streaming platform for a next-gen audio experience.',
-    tags: ['TypeScript', 'React', 'Framer Motion'],
-    demo: 'https://echo.d21s7gad01covv.amplifyapp.com/',
-    image: echoverseImg,
   },
   {
     title: 'Moviedom',
@@ -93,134 +83,83 @@ function App() {
       <FloatingCodeSnippets />
       <MorphingNav />
 
+      {/* Fixed circular Contact — replaces hero buttons */}
+      <a
+        href="#contact"
+        aria-label="Contact Me"
+        className="fixed right-4 md:right-6 bottom-6 md:bottom-auto md:top-1/2 md:-translate-y-1/2 z-50 w-[68px] h-[68px] md:w-[84px] md:h-[84px] rounded-full bg-white text-black border-[1.5px] border-black shadow-[4px_4px_0px_0px_#111] hover:shadow-[2px_2px_0px_0px_#111] hover:translate-x-[2px] hover:translate-y-[2px] grid place-items-center text-center font-mono text-[11px] font-bold tracking-[0.14em] leading-none transition-all"
+      >
+        <span>CONTACT<br />ME</span>
+      </a>
+
       <section
         id="hero"
-        className="min-h-screen flex flex-col items-center justify-center px-6 relative z-10"
+        className="min-h-[78vh] flex flex-col items-center justify-center px-6 pt-36 pb-16 md:pt-40 md:pb-20 relative z-10 text-center"
       >
-        <motion.div
-           className="text-center"
-           initial={{ opacity: 0, y: 40 }}
-           animate={{ opacity: 1, y: 0 }}
-           transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
-        >
-          <motion.p
-            className="text-white text-sm md:text-base mb-4 font-medium tracking-widest uppercase"
-          >
-            Hi, I'm
-          </motion.p>
-          <div className="flex flex-col items-center w-full max-w-7xl mx-auto">
-            {/* Initialization Prompt */}
-            <div className="h-4 mb-4 flex items-center justify-center">
-              {"...".split("").map((char, i) => (
-                <motion.span
-                  key={`dot-${i}`}
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: [0, 1, 0] }}
-                  transition={{ duration: 1, delay: i * 0.2 }}
-                  className="text-indigo-500 mx-1 font-mono text-xl"
-                >
-                  {char}
-                </motion.span>
-              ))}
-            </div>
-
-            {/* Monumental Name */}
-            <h1 className="text-4xl md:text-7xl lg:text-[13rem] mb-6 tracking-tighter flex flex-wrap justify-center font-['Nova_Flat'] leading-none text-center">
-              <span className="flex flex-wrap justify-center">
-                {"Yusuf ".split("").map((char, i) => (
-                  <motion.span
-                    key={i}
-                    initial={{ opacity: 0, scale: 0.5, filter: "blur(10px)" }}
-                    animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
-                    transition={{ duration: 0.2, delay: 0.8 + i * 0.08, ease: [0.16, 1, 0.3, 1] }}
-                    className={char === " " ? "mr-4 md:mr-10 text-white" : "text-white"}
-                  >
-                    {char}
-                  </motion.span>
-                ))}
-                {"Mshelia".split("").map((char, i) => (
-                  <motion.span
-                    key={i + 6}
-                    initial={{ opacity: 0, scale: 0.5, filter: "blur(10px)" }}
-                    animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
-                    transition={{ duration: 0.2, delay: 0.8 + (i + 6) * 0.08, ease: [0.16, 1, 0.3, 1] }}
-                    className="text-purple-500"
-                  >
-                    {char}
-                  </motion.span>
-                ))}
-              </span>
-            </h1>
-
-            {/* Professional Role */}
-            <p className="text-slate-100/80 text-lg md:text-2xl font-bold font-mono tracking-[0.4em] uppercase mt-8 md:pb-4 pb-0 text-center px-4">
-              React Developer
-            </p>
+        <div className="absolute top-6 right-6 md:top-8 md:right-8 z-20">
+          <div className="inline-flex items-center px-4 py-2 rounded-full bg-white text-black border-[1.5px] border-black shadow-[3px_3px_0px_0px_#6366f1] font-mono text-[11px] font-bold tracking-[0.16em] uppercase">
+            Open to freelance — Remote
           </div>
-          <p className="text-slate-400 text-sm md:text-base max-w-md mx-auto mt-6 opacity-60">
-            Building the future, one component at a time
-          </p>
-        </motion.div>
+        </div>
 
         <motion.div
-          className="absolute bottom-12 text-white"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.2 }}
+          initial={{ opacity: 0, y: 14 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+          className="max-w-3xl mx-auto flex flex-col items-center"
         >
-          <motion.div
-            animate={{ y: [0, 8, 0] }}
-            transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
-          >
-            <ChevronDown size={32} />
-          </motion.div>
+          <div className="h-6 md:h-8" />
+          <h1 className="text-[46px] md:text-[76px] lg:text-[88px] leading-[0.95] tracking-tighter">
+            <span className="block font-['Syne'] font-800 text-white pb-1">Yusuf</span>
+            <span className="block font-['Instrument_Serif'] italic font-normal text-slate-400 mt-3">Mshelia</span>
+          </h1>
+
+          <p className="mt-4 text-white text-[13px] md:text-sm font-mono tracking-[0.32em] uppercase font-bold">
+            Software Engineer
+          </p>
+
+          <p className="mt-5 text-slate-300 text-[16px] md:text-[18px] leading-relaxed max-w-2xl text-center">
+            Specializing in React, Next, TypeScript and modern web architecture, I build
+            scalable, maintainable products — from design systems to production APIs — with a focus
+            on performance, accessibility, and clean code that teams can rely on.
+          </p>
         </motion.div>
       </section>
 
-      <section id="about" className="min-h-screen flex flex-col items-center justify-center px-6 py-24 relative z-10">
-        <motion.h2
-          className="text-4xl md:text-6xl font-bold mb-16 text-center"
-          {...fadeUp}
-        >
-          <span>About Me</span>
-        </motion.h2>
-        <motion.p
-          className="text-slate-400 text-center text-lg md:text-xl max-w-2xl mb-48 leading-relaxed"
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.1 }}
-        >
-          I'm a passionate React developer who loves turning complex problems into elegant,
-          user-friendly solutions. With a keen eye for detail and a commitment to excellence, I
-          create digital experiences that not only look great but perform exceptionally.
-        </motion.p>
-        <div
-          className="mt-24 flex flex-col items-start gap-20 w-full max-w-6xl relative"
-        >
-          {FEATURES.map((f, i) => (
-            <motion.div
-              key={i}
-              className="max-w-md group/feature"
-              initial={{ opacity: 0, x: -150, filter: "blur(4px)" }}
-              whileInView={{ opacity: 1, x: 0, filter: "blur(0px)" }}
-              viewport={{ once: false, amount: 0.2 }}
-              transition={{ 
-                type: "spring",
-                stiffness: 40,
-                damping: 15,
-                delay: 0.1 
-              }}
-              style={{ marginLeft: `${i * 25}%` }}
-            >
-              <h3 className="font-bold text-slate-100 text-3xl md:text-4xl mb-3 tracking-tighter group-hover/feature:text-indigo-400 transition-colors duration-300">
-                {f.title}
-              </h3>
-              <p className="text-slate-400 text-lg md:text-xl leading-relaxed max-w-sm">
-                {f.desc}
-              </p>
-            </motion.div>
-          ))}
+      <section className="px-6 py-16 md:py-20 relative z-10">
+        <div className="w-full max-w-3xl mx-auto">
+          <div className="text-center mb-10">
+            <p className="font-mono text-[11px] tracking-[0.2em] uppercase text-slate-500">— my working notes, not a poster</p>
+          </div>
+          <div className="relative border-l border-white/10 ml-4 md:ml-6 pl-8 md:pl-10 space-y-10">
+            <div className="absolute left-0 top-2 bottom-8 w-px bg-gradient-to-b from-indigo-400/60 via-white/10 to-transparent hidden md:block" />
+            {FEATURES.map((f, i) => (
+              <motion.div
+                key={i}
+                className="relative group"
+                initial={{ opacity: 0, x: -12 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: i * 0.08 }}
+              >
+                <span className="absolute -left-[42px] md:-left-[52px] top-1 w-7 h-7 rounded-full bg-white text-black grid place-items-center text-[11px] font-bold border-2 border-black shadow-[2px_2px_0px_0px_rgba(255,255,255,0.15)] group-hover:scale-110 transition-transform">
+                  {i + 1}
+                </span>
+                <h3 className="text-[19px] md:text-[22px] font-bold leading-tight tracking-tight text-white">
+                  <span className="bg-gradient-to-r from-indigo-500/15 via-purple-500/10 to-transparent px-1.5 -mx-1.5 rounded-sm box-decoration-clone">{f.title}</span>
+                </h3>
+                <p className="mt-2 text-slate-400 leading-relaxed text-[15px] max-w-xl">
+                  {f.desc}
+                </p>
+                <div className="mt-3 font-mono text-[11px] tracking-[0.12em] uppercase text-white/25 group-hover:text-indigo-300 transition-colors">
+                  — {i === 0 ? "future you says thanks" : i === 1 ? "no spinner as personality" : i === 2 ? "boring is good" : "demo > deck"}
+                </div>
+              </motion.div>
+            ))}
+          </div>
+          <p className="mt-10 text-center font-mono text-xs text-slate-500 italic">
+            P.S. If it’s not readable, it’s not done. I also leave the code cleaner than I found it.
+          </p>
         </div>
       </section>
 
@@ -286,14 +225,22 @@ function App() {
                     ))}
                   </div>
 
-                  <MagneticButton 
-                    href={p.demo} 
-                    target="_blank" 
-                    className="py-3 px-10 text-xs uppercase tracking-[0.3em] font-black bg-indigo-500/10 border border-indigo-500/30 text-indigo-400 hover:bg-indigo-500/20 hover:text-indigo-300 transition-all flex items-center justify-center gap-2"
+                  {/* Compact ticket-stub — reduced */}
+                  <a
+                    href={p.demo}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group relative inline-flex items-center gap-2.5 pl-4 pr-2.5 py-2 bg-[#fafaf9] text-black border-[1.5px] border-black shadow-[3px_3px_0px_0px_#111] hover:shadow-[1.5px_1.5px_0px_0px_#111] hover:translate-x-[1.5px] hover:translate-y-[1.5px] transition-all duration-200"
                   >
-                    <Link2 size={16} />
-                    Link
-                  </MagneticButton>
+                    <span className="absolute -left-[1.5px] top-1/2 -translate-y-1/2 w-2.5 h-5 bg-black rounded-r-full" />
+                    <span className="font-mono text-[10px] font-bold tracking-[0.18em] uppercase">Visit Live</span>
+                    <span className="w-6 h-6 grid place-items-center bg-black text-white rounded-full group-hover:rotate-45 transition-transform duration-300">
+                      <span className="text-[11px] leading-none">↗</span>
+                    </span>
+                    <span className="hidden sm:inline font-mono text-[9px] tracking-widest text-black/40 border-l border-black/10 pl-2.5 ml-1">
+                      {new URL(p.demo).hostname.replace('www.','')}
+                    </span>
+                  </a>
                 </div>
               </div>
             </motion.div>
@@ -360,8 +307,8 @@ function App() {
             </motion.a>
           ))}
         </motion.div>
-        <footer className="mt-24 pt-8 border-t border-slate-800 text-slate-300 text-sm">
-          © 2026 Yusuf Mshelia. Crafted with React & Motion
+        <footer className="mt-24 pt-8 border-t border-slate-800 text-slate-400 text-sm font-mono tracking-wide text-center">
+          © 2026 Yusuf Mshelia. Built with React and Motion
         </footer>
       </section>
     </div>

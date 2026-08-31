@@ -2,12 +2,15 @@ import { motion, useScroll } from 'framer-motion';
 import { useRef } from 'react';
 
 const SKILLS = [
-  { name: 'React', category: 'Interface Synthesis' },
-  { name: 'TypeScript', category: 'Logic Architecture' },
-  { name: 'JavaScript', category: 'Neural Core' },
-  { name: 'Tailwind', category: 'Visual Matrix' },
-  { name: 'Node.js', category: 'Server Backbone' },
-  { name: 'Framer Motion', category: 'Kinetic Flow' },
+  { name: 'React', category: 'Frontend' },
+  { name: 'Next.js', category: 'Framework' },
+  { name: 'TypeScript', category: 'Language' },
+  { name: 'JavaScript', category: 'Core' },
+  { name: 'Tailwind', category: 'Styling' },
+  { name: 'Node.js', category: 'Backend' },
+  { name: 'Express', category: 'API Layer' },
+  { name: 'MongoDB', category: 'Database' },
+  { name: 'Framer Motion', category: 'Motion' },
 ];
 
 export function OrbitalSkills() {

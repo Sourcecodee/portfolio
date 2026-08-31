@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Nova+Flat&family=Orbitron:wght@400;700;900&family=Michroma&family=Outfit:wght@400;700;900&family=JetBrains+Mono:wght@400;500&family=Inter:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nova+Flat&family=Orbitron:wght@400;700;900&family=Michroma&family=Outfit:wght@400;700;900&family=JetBrains+Mono:wght@400;500&family=Inter:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&family=Syne:wght@600;700;800&display=swap');
 @import "tailwindcss";
 
 /* Dark theme with indigo/purple accents - glassmorphism */
@@ -19,7 +19,8 @@
   --sans: 'Inter', system-ui, sans-serif;
   --heading: 'Outfit', sans-serif;
   --mono: 'JetBrains Mono', monospace;
-  --font-name: 'Nova Flat', sans-serif;
+  --font-name: 'Instrument Serif', serif;
+  --hero: 'Syne', sans-serif;
 
   font: 18px/145% var(--sans);
   letter-spacing: 0.18px;
@@ -49,6 +50,17 @@ html {
 
 body {
   margin: 0;
+  position: relative;
+}
+/* subtle paper grain — makes it feel printed, not generated */
+body::before{
+  content:'';
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:0;
+  opacity:0.035;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
 @keyframes gradient-shift {

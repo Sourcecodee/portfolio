@@ -1,30 +1,40 @@
-import { motion, useScroll } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { useState, useEffect } from 'react';
-import { Home, User, Monitor, Code, Mail } from 'lucide-react';
+import { Home, Monitor, Code, Mail } from 'lucide-react';
 
 const NAV_ITEMS = [
   { id: 'hero', icon: Home, label: 'Home' },
-  { id: 'about', icon: User, label: 'About' },
-  { id: 'projects', icon: Monitor, label: 'Work' },
+  { id: 'projects', icon: Monitor, label: 'Projects' },
   { id: 'skills', icon: Code, label: 'Skills' },
   { id: 'contact', icon: Mail, label: 'Contact' },
 ];
 
 export function MorphingNav() {
   const [activeIndex, setActiveIndex] = useState(0);
-  const { scrollY } = useScroll();
 
   useEffect(() => {
-    const unsub = scrollY.on('change', (y) => {
-      const vh = window.innerHeight;
-      const section = Math.min(Math.floor(y / vh), NAV_ITEMS.length - 1);
-      setActiveIndex(Math.max(0, section));
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const idx = NAV_ITEMS.findIndex((item) => item.id === entry.target.id);
+            if (idx !== -1) setActiveIndex(idx);
+          }
+        });
+      },
+      { rootMargin: '-50% 0px -50% 0px', threshold: 0 }
+    );
+
+    NAV_ITEMS.forEach((item) => {
+      const el = document.getElementById(item.id);
+      if (el) observer.observe(el);
     });
-    return () => unsub();
-  }, [scrollY]);
+
+    return () => observer.disconnect();
+  }, []);
 
   const handleClick = (id: string) => {
-    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
   };
 
   return (
