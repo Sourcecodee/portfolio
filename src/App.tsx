@@ -109,9 +109,33 @@ function App() {
           className="max-w-3xl mx-auto flex flex-col items-center"
         >
           <div className="h-6 md:h-8" />
-          <h1 className="text-[46px] md:text-[76px] lg:text-[88px] leading-[0.95] tracking-tighter">
-            <span className="block font-['Syne'] font-800 text-white pb-1">Yusuf</span>
-            <span className="block font-['Instrument_Serif'] italic font-normal text-slate-400 mt-3">Mshelia</span>
+          <h1 className="text-[46px] md:text-[76px] lg:text-[88px] leading-[0.95] tracking-tighter flex flex-col items-center">
+            <span className="flex">
+              {"Yusuf ".split("").map((char, i) => (
+                <motion.span
+                  key={`y-${i}`}
+                  initial={{ opacity: 0, scale: 0.5, filter: "blur(10px)" }}
+                  animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
+                  transition={{ duration: 0.22, delay: 0.25 + i * 0.07, ease: [0.16, 1, 0.3, 1] }}
+                  className={char === " " ? "mr-3 md:mr-6 font-['Syne'] font-800 text-white pb-1" : "font-['Syne'] font-800 text-white pb-1"}
+                >
+                  {char}
+                </motion.span>
+              ))}
+            </span>
+            <span className="flex mt-2">
+              {"Mshelia".split("").map((char, i) => (
+                <motion.span
+                  key={`m-${i}`}
+                  initial={{ opacity: 0, scale: 0.5, filter: "blur(10px)" }}
+                  animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
+                  transition={{ duration: 0.22, delay: 0.25 + (i + 6) * 0.07, ease: [0.16, 1, 0.3, 1] }}
+                  className="font-['Instrument_Serif'] italic font-normal text-slate-400"
+                >
+                  {char}
+                </motion.span>
+              ))}
+            </span>
           </h1>
 
           <p className="mt-4 text-white text-[13px] md:text-sm font-mono tracking-[0.32em] uppercase font-bold">
