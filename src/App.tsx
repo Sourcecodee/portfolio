@@ -10,6 +10,7 @@ import scentreelImg from './assets/scentreel.png';
 import imintImg from './assets/iMint.png';
 import moviedomImg from './assets/moviedom.png';
 import escapeImg from './assets/Escape.png';
+import infraDeImg from './assets/infraDe.png';
 
 const FEATURES = [
   { title: 'Code you can re-read at 2am', desc: 'No decoder ring needed. Clear names, small functions, comments only where the why isn’t obvious.' },
@@ -19,6 +20,13 @@ const FEATURES = [
 ];
 
 const PROJECTS = [
+  {
+    title: 'infraDe',
+    desc: 'A research & engineering lab dedicated to building and teaching systems across AI, decentralized networks, and cloud infrastructure.',
+    tags: ['Astro', 'JavaScript'],
+    demo: 'https://infrade.io/',
+    image: infraDeImg,
+  },
   {
     title: 'Scentreel',
     desc: 'An immersive perfume experience featuring stunning visuals and smooth animations. Built for exploration.',
