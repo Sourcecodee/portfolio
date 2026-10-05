@@ -22,7 +22,7 @@
   line-height: 1.18;
   letter-spacing: -0.025em;
   margin: 24px 0 0;
-  color: #f0e8d6;
+  color: #dcd4c2;
   transform: rotate(-2deg);
 }
 .hero-name > span { display: block; }
@@ -42,8 +42,7 @@ h2 {
 
 .portfolio-page {
   padding-bottom: calc(100px + env(safe-area-inset-bottom));
-  background-image: linear-gradient(#f0e8d606 1px, transparent 1px), linear-gradient(90deg, #f0e8d606 1px, transparent 1px);
-  background-size: 32px 32px;
+  background-color: var(--bg-dark);
 }
 .portfolio-nav {
   position: fixed;

@@ -44,7 +44,7 @@ export function ParticleBackground() {
 
     const animate = () => {
       // Create trailing effect by not fully clearing
-      ctx.fillStyle = 'rgba(10, 10, 15, 0.08)';
+      ctx.fillStyle = 'rgba(25, 25, 22, 0.08)';
       ctx.fillRect(0, 0, canvas.width, canvas.height);
 
       const mx = mouseRef.current.x;
@@ -80,7 +80,7 @@ export function ParticleBackground() {
         // Draw particle
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-        ctx.fillStyle = 'rgba(255, 255, 255, 0.6)';
+        ctx.fillStyle = 'rgba(230, 184, 92, 0.6)';
         ctx.fill();
 
         // Draw connections (Connecting and Breaking with density cap)
@@ -99,8 +99,8 @@ export function ParticleBackground() {
             ctx.beginPath();
             ctx.moveTo(p.x, p.y);
             ctx.lineTo(p2.x, p2.y);
-            // Whitish trail look for lines
-            ctx.strokeStyle = `rgba(255, 255, 255, ${opacity})`;
+            // Match the connecting trails to the amber particles
+            ctx.strokeStyle = `rgba(230, 184, 92, ${opacity})`;
             ctx.lineWidth = 0.5;
             ctx.stroke();
           }
@@ -125,7 +125,8 @@ export function ParticleBackground() {
   return (
     <canvas
       ref={canvasRef}
-      className="fixed inset-0 w-full h-full -z-10 bg-[#0a0a0f]"
+      aria-hidden="true"
+      className="fixed inset-0 w-full h-full -z-10 pointer-events-none bg-[#191916]"
     />
   );
 }

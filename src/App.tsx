@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import { ParticleBackground } from './components/ParticleBackground';
 import { PortfolioIcon } from './components/PortfolioIcon';
 import { MorphingNav } from './components/MorphingNav';
 import { OrbitalSkills } from './components/OrbitalSkills';
@@ -78,7 +79,8 @@ const containerVariants = {
 
 function App() {
   return (
-    <div className="portfolio-page min-h-screen text-slate-100 relative overflow-hidden">
+    <div className="portfolio-page min-h-screen text-slate-100 relative isolate overflow-hidden">
+      <ParticleBackground />
       <MorphingNav />
 
       {/* Fixed circular Contact — replaces hero buttons */}
@@ -107,7 +109,7 @@ function App() {
           className="max-w-5xl w-full mx-auto flex flex-col items-start"
         >
           <div className="h-6 md:h-8" />
-          <h1 className="hero-name text-white">
+          <h1 className="hero-name">
             <span>Yusuf</span><span>Mshelia<span className="name-dot">.</span></span>
           </h1>
 
