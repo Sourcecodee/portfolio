@@ -1,3 +1,4 @@
+import { PortfolioIcon } from './PortfolioIcon';
 import { useState, useRef } from 'react';
 import emailjs from '@emailjs/browser';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -34,35 +35,40 @@ export function ContactForm() {
       <form ref={formRef} onSubmit={handleSubmit} className="space-y-6 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div className="space-y-2">
-            <label className="text-[10px] uppercase tracking-[0.2em] font-bold text-slate-400 ml-1">Name</label>
+            <label className="text-[10px] uppercase tracking-[0.2em] font-bold text-slate-400 ml-1" htmlFor="contact-name">Your name</label>
             <input
               type="text"
+              id="contact-name"
+              autoComplete="name"
               name="from_name"
               required
-              placeholder="Your Name"
-              className="w-full bg-black/40 border border-white/5 rounded-none px-4 py-3 text-slate-100 placeholder:text-slate-600 focus:outline-none focus:border-indigo-500/50 transition-all font-mono text-sm"
+              placeholder="What should I call you?"
+              className="w-full bg-black/40 border border-white/5 rounded-none px-4 py-3 text-slate-100 placeholder:text-slate-600 focus:outline-none focus:border-amber-500/50 transition-all font-mono text-sm"
             />
           </div>
           <div className="space-y-2">
-            <label className="text-[10px] uppercase tracking-[0.2em] font-bold text-slate-400 ml-1">Email</label>
+            <label className="text-[10px] uppercase tracking-[0.2em] font-bold text-slate-400 ml-1" htmlFor="contact-email">Email address</label>
             <input
               type="email"
+              id="contact-email"
+              autoComplete="email"
               name="from_email"
               required
-              placeholder="Your Email Address"
-              className="w-full bg-black/40 border border-white/5 rounded-none px-4 py-3 text-slate-100 placeholder:text-slate-600 focus:outline-none focus:border-indigo-500/50 transition-all font-mono text-sm"
+              placeholder="you@example.com"
+              className="w-full bg-black/40 border border-white/5 rounded-none px-4 py-3 text-slate-100 placeholder:text-slate-600 focus:outline-none focus:border-amber-500/50 transition-all font-mono text-sm"
             />
           </div>
         </div>
         
         <div className="space-y-2">
-          <label className="text-[10px] uppercase tracking-[0.2em] font-bold text-slate-400 ml-1">Message</label>
+          <label className="text-[10px] uppercase tracking-[0.2em] font-bold text-slate-400 ml-1" htmlFor="contact-message">A little about your idea</label>
           <textarea
+            id="contact-message"
             name="message"
             required
             rows={4}
-            placeholder="Your Message"
-            className="w-full bg-black/40 border border-white/5 rounded-none px-4 py-3 text-slate-100 placeholder:text-slate-600 focus:outline-none focus:border-indigo-500/50 transition-all font-mono text-sm resize-none"
+            placeholder="What are you making? Tell me a little about it…"
+            className="w-full bg-black/40 border border-white/5 rounded-none px-4 py-3 text-slate-100 placeholder:text-slate-600 focus:outline-none focus:border-amber-500/50 transition-all font-mono text-sm resize-none"
           />
         </div>
 
@@ -82,7 +88,7 @@ export function ContactForm() {
               className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full"
             />
           ) : (
-            'Send'
+            <span className="flex items-center gap-3">Send a note <PortfolioIcon name="send" width={19} height={19} /></span>
           )}
         </button>
 
@@ -92,9 +98,10 @@ export function ContactForm() {
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0 }}
+              role="status"
               className="text-white text-xs font-mono text-center absolute -bottom-8 left-0 right-0"
             >
-              Thanks! Your message has been sent successfully.
+              Your note is in. Thanks for getting in touch.
             </motion.p>
           )}
           {status === 'error' && (
@@ -102,16 +109,17 @@ export function ContactForm() {
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0 }}
+              role="alert"
               className="text-rose-400 text-xs font-mono text-center absolute -bottom-8 left-0 right-0"
             >
-              Oops! Something went wrong. Please try again.
+              Your note didn’t send. Please try once more.
             </motion.p>
           )}
         </AnimatePresence>
       </form>
 
       {/* Decorative scan line back */}
-      <div className="absolute inset-0 bg-linear-to-b from-transparent via-indigo-500/5 to-transparent h-1/2 w-full -translate-y-full group-hover:animate-scan pointer-events-none" />
+      <div className="absolute inset-0 bg-linear-to-b from-transparent via-amber-500/5 to-transparent h-1/2 w-full -translate-y-full group-hover:animate-scan pointer-events-none" />
     </div>
   );
 }

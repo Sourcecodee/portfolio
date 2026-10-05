@@ -1,9 +1,14 @@
-@import url('https://fonts.googleapis.com/css2?family=Nova+Flat&family=Orbitron:wght@400;700;900&family=Michroma&family=Outfit:wght@400;700;900&family=JetBrains+Mono:wght@400;500&family=Inter:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&family=Syne:wght@600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bungee+Shade&family=Patrick+Hand&display=swap');
 @import "tailwindcss";
+
+@theme {
+  --font-sans: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  --font-mono: 'SFMono-Regular', Consolas, monospace;
+}
 
 /* Dark theme with indigo/purple accents - glassmorphism */
 :root {
-  --bg-dark: #0a0a0f;
+  --bg-dark: #191916;
   --bg-card: rgba(15, 15, 25, 0.6);
   --glass-border: rgba(255, 255, 255, 0.08);
   --glass-highlight: rgba(255, 255, 255, 0.05);
@@ -16,11 +21,11 @@
   --text-dim: #64748b;
   --code-bg: #1a1b26;
 
-  --sans: 'Inter', system-ui, sans-serif;
-  --heading: 'Outfit', sans-serif;
-  --mono: 'JetBrains Mono', monospace;
-  --font-name: 'Instrument Serif', serif;
-  --hero: 'Syne', sans-serif;
+  --sans: 'Courier New', Courier, monospace;
+  --heading: 'Patrick Hand', 'Segoe Print', cursive;
+  --mono: 'SFMono-Regular', Consolas, monospace;
+  --font-name: var(--sans);
+  --hero: var(--sans);
 
   font: 18px/145% var(--sans);
   letter-spacing: 0.18px;
@@ -45,7 +50,7 @@ html {
   width: 100%;
   min-height: 100svh;
   box-sizing: border-box;
-  font-family: 'Inter', system-ui, sans-serif;
+  font-family: var(--sans);
 }
 
 body {

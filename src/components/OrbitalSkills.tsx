@@ -30,7 +30,7 @@ export function OrbitalSkills() {
       
       {/* Scroll-Synced Kinetic Pulse */}
       <motion.div 
-        className="absolute left-8 md:left-1/2 -ms-px md:-translate-x-1/2 w-px bg-indigo-500/40 -z-10 origin-top"
+        className="absolute left-8 md:left-1/2 -ms-px md:-translate-x-1/2 w-px bg-amber-500/40 -z-10 origin-top"
         style={{ 
           top: '144px', 
           bottom: '144px', 
@@ -45,7 +45,7 @@ export function OrbitalSkills() {
   );
 }
 
-function SkillNode({ skill, index }: { skill: any, index: number }) {
+function SkillNode({ skill, index }: { skill: (typeof SKILLS)[number], index: number }) {
   const isRight = index % 2 === 0;
 
   return (
@@ -65,7 +65,7 @@ function SkillNode({ skill, index }: { skill: any, index: number }) {
     >
       <div className={`flex items-center ${isRight ? 'md:flex-row-reverse' : 'flex-row'} relative`}>
         {/* Connection Node */}
-        <div className="w-2.5 h-2.5 rounded-full border border-white/40 bg-slate-900 group-hover:scale-150 group-hover:bg-indigo-500 group-hover:border-indigo-400 transition-all duration-300 relative z-10" />
+        <div className="w-2.5 h-2.5 rounded-full border border-white/40 bg-slate-900 group-hover:scale-150 group-hover:bg-amber-500 group-hover:border-amber-400 transition-all duration-300 relative z-10" />
         
         {/* Connecting Line Beam */}
         <motion.div 
@@ -82,21 +82,21 @@ function SkillNode({ skill, index }: { skill: any, index: number }) {
             backgroundColor: "rgba(255, 255, 255, 0.2)"
           }}
           whileHover={{
-            backgroundColor: "#6366f1"
+            backgroundColor: "#e6b85c"
           }}
         />
 
         {/* The Skill Manifesto Block (No Cards, Pure Architecture) */}
-        <div className={`flex flex-col ${isRight ? 'items-end mr-6 text-right' : 'items-start ml-6 text-left'} min-w-[200px]`}>
-          <span className="text-[10px] font-mono text-indigo-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300 tracking-[0.5em] mb-1">
+        <div className={`flex flex-col ${isRight ? 'md:items-end md:mr-6 md:text-right' : 'md:items-start md:ml-6 md:text-left'} items-start ml-6 text-left min-w-0`}>
+          <span className="text-[11px] font-mono text-slate-400 tracking-normal mb-1">
             {skill.category}
           </span>
-          <h4 className="text-3xl md:text-5xl font-black text-white/40 group-hover:text-white transition-all duration-500 tracking-tighter uppercase line-height-[0.8]">
+          <h4 style={{ rotate: `${[-2, 1.5, -1, 2][index % 4]}deg` }} className="skill-lettering text-white/85 group-hover:text-white transition-colors duration-300">
             {skill.name}
           </h4>
 
           {/* Holographic Shift Underline */}
-          <div className="w-0 h-px bg-indigo-500 group-hover:w-full transition-all duration-700 mt-2" />
+          <div className="w-0 h-px bg-amber-500 group-hover:w-full transition-all duration-700 mt-2" />
         </div>
       </div>
     </motion.div>
