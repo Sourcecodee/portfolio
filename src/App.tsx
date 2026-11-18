@@ -11,6 +11,8 @@ import imintImg from './assets/iMint.png';
 import moviedomImg from './assets/moviedom.png';
 import escapeImg from './assets/Escape.png';
 import infraDeImg from './assets/infraDe.png';
+import sentryImg from './assets/Sentry.png';
+import livedImg from './assets/lived.png';
 
 const FEATURES = [
   { title: 'Start with the person using it.', desc: 'What do they need to do? What gets in the way? Those questions come before the components.', note: '01 / Understand' },
@@ -20,6 +22,20 @@ const FEATURES = [
 ];
 
 const PROJECTS = [
+  {
+    title: 'Sentry',
+    desc: 'A local-first privacy companion that finds sensitive details in documents and text, swaps them for placeholders, then restores the originals after an AI tool has done its work.',
+    tags: ['React', 'TypeScript', 'Vite'],
+    demo: 'https://sentry-three-beryl.vercel.app',
+    image: sentryImg,
+  },
+  {
+    title: 'Lived',
+    desc: 'A discovery space for work made by people — art, music, books and ideas — built around authorship, provenance and context instead of an endless feed.',
+    tags: ['Next.js', 'TypeScript', 'Tailwind'],
+    demo: 'https://lived-delta.vercel.app',
+    image: livedImg,
+  },
   {
     title: 'infraDe',
     desc: 'A home on the web for a research and engineering lab working across AI, decentralized networks, and cloud infrastructure.',
@@ -169,7 +185,7 @@ function App() {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
         >
-          Fragrances, films, phones, and places to go. Different briefs, different personalities.
+          Privacy tools, creative discovery, fragrances, films, phones, and places to go. Different briefs, different personalities.
         </motion.p>
         <div
           className="mt-24 flex flex-col gap-32 w-full max-w-7xl mx-auto"
