@@ -23,20 +23,6 @@ const FEATURES = [
 
 const PROJECTS = [
   {
-    title: 'Sentry',
-    desc: 'A local-first privacy companion that finds sensitive details in documents and text, swaps them for placeholders, then restores the originals after an AI tool has done its work.',
-    tags: ['React', 'TypeScript', 'Vite'],
-    demo: 'https://sentry-three-beryl.vercel.app',
-    image: sentryImg,
-  },
-  {
-    title: 'Lived',
-    desc: 'A discovery space for work made by people — art, music, books and ideas — built around authorship, provenance and context instead of an endless feed.',
-    tags: ['Next.js', 'TypeScript', 'Tailwind'],
-    demo: 'https://lived-delta.vercel.app',
-    image: livedImg,
-  },
-  {
     title: 'infraDe',
     desc: 'A home on the web for a research and engineering lab working across AI, decentralized networks, and cloud infrastructure.',
     tags: ['Astro', 'JavaScript'],
@@ -70,6 +56,20 @@ const PROJECTS = [
     tags: ['React', 'MUI', 'React Slick'],
     demo: 'https://staging.d6mqsufv5emv8.amplifyapp.com',
     image: escapeImg,
+  },
+  {
+    title: 'Sentry',
+    desc: 'A local-first privacy companion that finds sensitive details in documents and text, swaps them for placeholders, then restores the originals after an AI tool has done its work.',
+    tags: ['React', 'TypeScript', 'Vite'],
+    demo: 'https://sentry-three-beryl.vercel.app',
+    image: sentryImg,
+  },
+  {
+    title: 'Lived',
+    desc: 'A discovery space for work made by people — art, music, books and ideas — built around authorship, provenance and context instead of an endless feed.',
+    tags: ['Next.js', 'TypeScript', 'Tailwind'],
+    demo: 'https://lived-delta.vercel.app',
+    image: livedImg,
   },
 ];
 
